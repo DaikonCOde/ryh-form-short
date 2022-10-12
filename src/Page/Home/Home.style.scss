@@ -12,13 +12,14 @@
   width: 100%;
   box-shadow: 0px 6px 62px rgba(0, 0, 0, 0.3);
   .header-form {
-    padding: 25px 25px 0;
+    padding: 25px 20px 0;
 
   }
 
   .body-form {
-    padding: 25px;
+    padding: 25px 20px;
     min-height: 370px;
+    border-radius: 10px 10px 0 0;
     .content-question-label {
 
       position: relative;
@@ -43,11 +44,31 @@
         padding: 0 24px;
       }
     }
+
+    .content-search {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 320px;
+      .searching-animate {
+        width: 100%;
+      }
+      .label-search {
+        font-size: 14px;
+        color: #202F54;
+        font-weight: 600;
+        margin: 15px 0 0;
+        text-align: center;
+        display: block;
+      }
+    }
   }
 
   .footer-form {
     background: #D0DBE7;
-    padding: 15px 25px;
+    padding: 15px 20px;
     border-radius: 0 0 10px 10px;
     .paragraph {
       font-size: 12px;

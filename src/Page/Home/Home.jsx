@@ -5,6 +5,10 @@ import data from '../../db/data.json';
 // components
 import ProgressBar from '../../Components/ProgressBar/ProgressBar';
 import OptionsSelect from '../../Components/OptionsSelect/OptionsSelect';
+import SearchClinics from '../../Components/SearchClinics/SearchClinics';
+import Loader from '../../Components/Loader/Loader';
+
+import ContactForm from '../../Components/ContactForm/ContactForm';
 import Thanks from '../../Components/Thanks/Thanks';
 
 import ArrowBack from '../../assets/arrow-prev.svg';
@@ -19,8 +23,31 @@ function Home() {
     index_question: 0,
     response: [],
   })
+  const [ isSearching, setIsSearching ] = useState(false)
+  const [ isLoading, setIsLoading ] = useState(false)
+  const [ showContactForm, setShowContactForm ] = useState(false);
+
+  useEffect(() => {
+    if( isSearching ) {
+      setTimeout(() => {
+        setIsSearching(false)
+        setIsLoading(true)
+      }, 3000)
+    }
+
+    if( isLoading ) {
+      setTimeout(() => {
+        setIsLoading(false)
+        setShowContactForm(true)
+      }, 3000)
+    }
+  }, [isSearching, isLoading])
 
   const handleSelectedOption = (id) => {
+    if( stateQuestions.index_question === (data.questions.length - 1) ) {
+      setIsSearching(true)
+      console.log('yes');
+    }
 
     if( stateQuestions.response[stateQuestions.index_question] === undefined || stateQuestions.response.length === 1 ) {
       setStateQuestions(prev => ({
@@ -52,10 +79,14 @@ function Home() {
   return (
     <div className='home-page'>
         <div className="content-form">
-          <div className="header-form">
-            <ProgressBar totalQuestions= { data.questions.length } index={stateQuestions.index_question} />
-          </div>
-          <div className="body-form">
+            {
+              stateQuestions.index_question <= (data.questions.length - 1) && (
+                <div className="header-form">
+                  <ProgressBar totalQuestions= { data.questions.length } index={stateQuestions.index_question} />
+                </div>
+              )
+            }
+          <div className="body-form" style={{  background: showContactForm ? '#fff' : '' }}>
             <div className="content-question-label">
               {
                 stateQuestions.index_question <= (data.questions.length - 1) && (
@@ -77,14 +108,37 @@ function Home() {
             </div>  
 
             {
-              stateQuestions.index_question <= (data.questions.length - 1) 
-                ? <OptionsSelect 
+              stateQuestions.index_question <= (data.questions.length - 1)  && (
+                <OptionsSelect 
                     questions={data.questions[stateQuestions.index_question]} 
                     handleSelectedOption={handleSelectedOption}
                     response={stateQuestions.response[stateQuestions.index_question]}
                     index={stateQuestions.index_question}
                   />
-                : <Thanks />
+              )
+            }
+            {
+              (!showContactForm && (stateQuestions.index_question > (data.questions.length - 1) )) && (
+                <div className='content-search'>
+                    {
+                      isSearching && (
+                        <SearchClinics />
+                      )
+                    }
+                    {
+                      isLoading && (
+                        <Loader />
+                      )
+                    }
+                  </div> 
+
+              )
+            }
+
+            {
+              showContactForm && (
+                <ContactForm />
+              )
             }
 
           </div>

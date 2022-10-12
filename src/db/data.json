@@ -196,17 +196,17 @@
       ]
     },
     {
-      "label": "¿En qué ciudad vives?",
+      "label": "¿En qué zona vives?",
       "options": [
         {
           "id": 101,
-          "src_img": "Flag_UK.svg",
-          "label": "UK" 
+          "src_img": "Spain.svg",
+          "label": "España" 
         },
         {
           "id": 102,
           "src_img": "Flag_USA.svg",
-          "label": "USA"
+          "label": "America"
         },
         {
           "id": 103,
@@ -225,18 +225,18 @@
       "options": [
         {
           "id": 111,
-          "src_img": "Flag_UK.svg",
+          "src_img": "whatsapp.svg",
           "label": "WhatsApp" 
         },
         {
           "id": 112,
-          "src_img": "Flag_USA.svg",
-          "label": "Llamada Telefónica"
+          "src_img": "mail.svg",
+          "label": "Mail"
         },
         {
           "id": 113,
-          "src_img": "Flag_Europe.svg",
-          "label": "Mail"
+          "src_img": "Phone.svg",
+          "label": "Llamada telefónica"
         }
       ]
     }
