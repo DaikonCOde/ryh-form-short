@@ -6,8 +6,6 @@ function OptionsSelect({questions, handleSelectedOption, response, index, goBack
   const OptionsRef = useRef(null)
 
   useEffect(() => {
-    console.log('goback: ' + goBack)
-    console.log('change render: ' + changeRender);
 
     if(OptionsRef.current) {
 
@@ -25,8 +23,6 @@ function OptionsSelect({questions, handleSelectedOption, response, index, goBack
   },[ OptionsRef, questions ])
 
   useEffect(() => {
-    console.log('goback: ' + goBack)
-    console.log('change render: ' + changeRender);
     if( OptionsRef.current ) {
 
       if ( goBack && !changeRender ) {
@@ -70,7 +66,6 @@ function OptionsSelect({questions, handleSelectedOption, response, index, goBack
     OptionsRef.current.classList.add('animate-exit')
     OptionsRef.current.classList.remove('animate-initial')
 
-    
     setTimeout( () => {
       resetOptionsAnimate()
       OptionsRef.current.classList.add('initial-x')

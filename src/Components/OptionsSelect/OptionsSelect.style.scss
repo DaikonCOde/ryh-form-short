@@ -4,10 +4,12 @@
   justify-content: space-between;
   gap: 15px;
   flex-wrap: wrap;
-  margin: 0 auto;
-  // transform: translateX(150px);
-  // transition: all .5s linear;
+  margin: 60px auto 0;
   opacity: .3;
+
+  @media (min-width: 767px) {
+    width: 325px;
+  }
 
   .option {
     display: flex;
@@ -19,6 +21,13 @@
     transition: all .5s linear;
     border: 3px solid transparent; 
     gap: 10px;
+    @media (min-width: 767px) {
+      cursor: pointer;
+    }
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
     .option-label {
       text-align: center;
       font-size: 14px;
@@ -35,6 +44,14 @@
       width: 60px;
       height: 60px;
     }
+
+    @media (min-width: 767px) {
+      height: 90px;
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
     .option-label {
       width: 100%;
     }
@@ -43,6 +60,10 @@
   .square {
     width: 110px;
     height: 110px;
+    @media (min-width: 767px) {
+      width: 150px;
+      height: 150px;
+    }
   }
 
   .select {

@@ -20,6 +20,22 @@ body {
   background-repeat: no-repeat;
 }
 
+@media (min-width: 767px) {
+  .content-app {
+    padding: 15px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url('./assets/background_desktop.png');
+    background-size: 'contain';
+    background-attachment: fixed;
+    background-position: right center;
+    background-repeat: no-repeat;
+  }
+}
+
 .content-app::before {
   background: linear-gradient(91.56deg,#42a7df 1.13%,#1c3553 103.93%);
   opacity: 0.9;

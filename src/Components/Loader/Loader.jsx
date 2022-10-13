@@ -1,4 +1,5 @@
-import LoaderAnimation from '../../assets/Medihair_Loader.svg';
+// import LoaderAnimation from '../../assets/Medihair_Loader.svg';
+import Loading from '../../assets/loading.png'
 
 function Loader() {
 
@@ -8,7 +9,7 @@ function Loader() {
 
   return (
     <>
-      <img className='animate' style={{width: '180px',height: '180px'}} src={LoaderAnimation} alt="" />
+      <img className='animate' style={{width: '180px',height: '180px'}} src={Loading} alt="" />
       <span className="label-search">Se han encontraron {GetNumberOfClinics() } clínicas que coinciden.  </span>
     </>
   )

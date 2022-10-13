@@ -9,7 +9,6 @@ import SearchClinics from '../../Components/SearchClinics/SearchClinics';
 import Loader from '../../Components/Loader/Loader';
 
 import ContactForm from '../../Components/ContactForm/ContactForm';
-import Thanks from '../../Components/Thanks/Thanks';
 
 import ArrowBack from '../../assets/arrow-prev.svg';
 import './Home.style.scss';
@@ -21,8 +20,9 @@ function Home() {
 
   const [stateQuestions, setStateQuestions] = useState({
     index_question: 0,
-    response: [],
+    answers: [],
   })
+  const [ answerParse, setAnswerParse ] = useState(null)
   const [ isSearching, setIsSearching ] = useState(false)
   const [ goBack, setGoBack ] = useState(false)
   const [ changeRender, setChangeRender ] = useState(false)
@@ -39,11 +39,25 @@ function Home() {
 
     if( isLoading ) {
       setTimeout(() => {
+        AnswersParse();
         setIsLoading(false)
         setShowContactForm(true)
       }, 3000)
     }
   }, [isSearching, isLoading])
+
+  useEffect(() => {
+    
+    if( goBack && !changeRender ) {
+      setTimeout(() => {
+        setStateQuestions(prev => ({
+          ...prev,
+          index_question: prev.index_question - 1,
+        }))
+        setChangeRender(true);
+      }, 500)
+    }
+  },[changeRender, goBack] )
 
   const handleSelectedOption = (id) => {
     const stateClone = Object.assign({}, stateQuestions);
@@ -56,47 +70,61 @@ function Home() {
       setIsSearching(true)
     }
 
-    if( stateQuestions.response[stateQuestions.index_question] === undefined || stateQuestions.response.length === 1 ) {
+    if( stateQuestions.answers[stateQuestions.index_question] === undefined || stateQuestions.answers.length === 1 ) {
       stateClone.index_question = stateClone.index_question + 1,
-      stateClone.response = [...stateClone.response, id] 
+      stateClone.answers = [...stateClone.answers, id] 
 
     return setStateQuestions(stateClone);
     }
 
-    if( stateQuestions.response.length > 1) {
-      const firstOptions = stateQuestions.response.slice(0, stateQuestions.index_question);
-      const lastOptions = stateQuestions.response.slice(stateQuestions.index_question + 1);
+    if( stateQuestions.answers.length > 1) {
+      const firstOptions = stateQuestions.answers.slice(0, stateQuestions.index_question);
+      const lastOptions = stateQuestions.answers.slice(stateQuestions.index_question + 1);
 
       stateClone.index_question = stateClone.index_question + 1,
-      stateClone.response = firstOptions.concat([id].concat(lastOptions)) 
+      stateClone.answers = firstOptions.concat([id].concat(lastOptions)) 
 
       return setStateQuestions(stateClone);
     }
 
   } 
 
-  useEffect(() => {
-    
-    if( goBack && !changeRender ) {
-      console.log( 'go back: ' + goBack);
-      console.log( 'tender: ' + changeRender);
-
-      setTimeout(() => {
-        setStateQuestions(prev => ({
-          ...prev,
-          index_question: prev.index_question - 1,
-        }))
-        console.log(changeRender);
-        setChangeRender(true)
-  
-      }, 500)
-    }
-  },[changeRender, goBack] )
-
   const handlePreviousQuestion = () => {
     setGoBack(true);
     setChangeRender(false)
     
+  }
+
+  const AnswersParse = () => {
+    const objectWithAnswers = {}
+
+    const GetAnswerFistQuestion = () => {
+      switch (stateQuestions.answers[0]) {
+        case 1:
+          return 'Grado 3, entradas';
+        case 2:
+          return 'Grado 5, entradas y coronilla';
+        case 3:
+          return 'Grado 7, calvo total';
+        case 4:
+          return 'Mi cabello perdido es diferente';
+        default:
+          return '';
+      }
+    }
+
+    objectWithAnswers[0] = {
+      label: data.questions[0].label,
+      answer: GetAnswerFistQuestion()
+    }
+
+    for( let i = 1; i < data.questions.length; i++ ) {
+      objectWithAnswers[i] = {
+        label: data.questions[i].label,
+        answer: data.questions[i].options.filter( option => option.id === stateQuestions.answers[i])[0].label
+      }
+    }
+    setAnswerParse(objectWithAnswers)
   }
 
   return (
@@ -135,7 +163,7 @@ function Home() {
                 <OptionsSelect 
                     questions={data.questions[stateQuestions.index_question]} 
                     handleSelectedOption={handleSelectedOption}
-                    response={stateQuestions.response[stateQuestions.index_question]}
+                    response={stateQuestions.answers[stateQuestions.index_question]}
                     index={stateQuestions.index_question}
                     goBack={goBack}
                     changeRender={changeRender}
@@ -162,7 +190,7 @@ function Home() {
 
             {
               showContactForm && (
-                <ContactForm />
+                <ContactForm answer={answerParse} />
               )
             }
 

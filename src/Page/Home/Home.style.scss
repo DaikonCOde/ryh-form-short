@@ -4,6 +4,10 @@
   border-radius: 10px;
   position: relative;
   background: rgba(28, 53, 83, 0.3);
+  max-width: 650px;
+  @media (min-width: 767px) {
+    max-width: 550px;
+  }
 }
 
 .content-form {
@@ -18,30 +22,51 @@
 
   .body-form {
     padding: 25px 20px;
-    min-height: 370px;
+    min-height: 470px;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    @media (min-width: 767px) {
+      padding: 25px 50px;
+    }
     .content-question-label {
-
-      position: relative;
+      position: absolute;
+      top: 20px;
+      width: 87%;
+      @media (min-width: 767px) {
+        width: 400px;
+      }
       .back {
         width: 20px;
         height: 20px;
         display: inline-block;
         position: absolute;
-        top: 0px;
+        top: 5px;
         left: 0px;
+        @media (min-width: 767px) {
+          width: 25px;
+          height: 25px;
+          left: -20px;
+          cursor: pointer;
+        }
         img {
           width: 100%;
         }
       }
   
       .question-label {
-        margin: 10px 0 30px;
         font-weight: 700;
         color: #202F54;
         text-align: center;
         font-size: 14px;
+        margin: 0;
+        @media (min-width: 767px) {
+          font-size: 18px;
+        }
         padding: 0 24px;
       }
     }
@@ -52,9 +77,19 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 320px;
+      height: 470px;
       .searching-animate {
         width: 100%;
+        display: block;
+        @media (min-width: 767px) {
+          width: 80%;
+          margin: 0 auto
+        }
+      }
+      .animate {
+        animation-duration: 1.2s;
+        animation-name: loadingImg;
+        animation-iteration-count: infinite;
       }
       .label-search {
         font-size: 14px;
@@ -63,6 +98,9 @@
         margin: 15px 0 0;
         text-align: center;
         display: block;
+        @media (min-width: 767px) {
+          margin: 35px 0 0;
+        }
       }
     }
   }
@@ -77,5 +115,17 @@
       text-align: center;
       display: block;
     }
+  }
+}
+
+@keyframes loadingImg {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.8);
   }
 }
