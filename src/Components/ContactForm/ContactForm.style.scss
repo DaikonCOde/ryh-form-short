@@ -16,7 +16,6 @@
     background: #ffff;
     font-size: 14px;
     width: 100%;
-    margin: 0 0 15px 0;
   }
   .input-text:focus {
     border: 1px solid #41a6df;
@@ -38,6 +37,10 @@
       }
     }
   }
+  .content-input {
+    margin: 0 0 15px 0;
+    width: 100%;
+  }
 
   .input-names {
     display: flex;
@@ -45,7 +48,7 @@
     margin: 30px 0 0 0;
 
     .input-text {
-      width: 49%;
+      width: 100%;
     }
   }
 
@@ -65,6 +68,14 @@
     }
   }
 
+  .error-message {
+    font-size: 10px;
+    font-weight: 600;
+    color: #D74213;
+    display: block;
+    margin: 3px 0 0 0;
+  }
+
   .button-submit {
     background: #FF3800;
     width: 100%;
@@ -79,6 +90,7 @@
     line-height: 40px;
     padding: 0;
     border-radius: 5px;
+    transition: all .3s linear;
     &:hover {
       background: #D74213;
 

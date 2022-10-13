@@ -5,6 +5,9 @@
   gap: 15px;
   flex-wrap: wrap;
   margin: 0 auto;
+  // transform: translateX(150px);
+  // transition: all .5s linear;
+  opacity: .3;
 
   .option {
     display: flex;
@@ -13,9 +16,9 @@
     background: #fff;
     border-radius: 10px;
     padding: 10px;
-    transition: all .3s linear;
+    transition: all .5s linear;
     border: 3px solid transparent; 
-  
+    gap: 10px;
     .option-label {
       text-align: center;
       font-size: 14px;
@@ -47,10 +50,39 @@
     box-shadow: 0 5px 20px 3px rgb(0 0 0 / 30%)
   }
 
-
+  
   .option:hover {
     border: 3px solid #3E9DD2;
     transform: translateY(-3px);
     box-shadow: 0 5px 20px 3px rgb(0 0 0 / 30%)
   }
+}
+
+
+
+.initial-x {
+  transform: translateX(200px);
+}
+.back-x {
+  transform: translateX(-200px);
+}
+.transition-0 {
+  transition: all 0s linear;
+}
+
+.transition {
+  transition: all .5s linear;
+}
+
+.animate-go-back {
+  transform: translateX(-200px);
+  opacity: 0;
+}
+.animate-initial {
+  transform: translateX(0px) ;
+  opacity: 1;
+}
+.animate-exit {
+  transform: translateX(-200px) ;
+  opacity: 0;
 }

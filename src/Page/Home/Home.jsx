@@ -24,6 +24,8 @@ function Home() {
     response: [],
   })
   const [ isSearching, setIsSearching ] = useState(false)
+  const [ goBack, setGoBack ] = useState(false)
+  const [ changeRender, setChangeRender ] = useState(false)
   const [ isLoading, setIsLoading ] = useState(false)
   const [ showContactForm, setShowContactForm ] = useState(false);
 
@@ -44,36 +46,57 @@ function Home() {
   }, [isSearching, isLoading])
 
   const handleSelectedOption = (id) => {
+    const stateClone = Object.assign({}, stateQuestions);
+    if( goBack && changeRender ) {
+      setChangeRender(false);
+      setGoBack(false);
+    } 
+
     if( stateQuestions.index_question === (data.questions.length - 1) ) {
       setIsSearching(true)
-      console.log('yes');
     }
 
     if( stateQuestions.response[stateQuestions.index_question] === undefined || stateQuestions.response.length === 1 ) {
-      setStateQuestions(prev => ({
-        index_question: prev.index_question + 1,
-        response: [...prev.response, id] 
-      }))
-    
-      return
+      stateClone.index_question = stateClone.index_question + 1,
+      stateClone.response = [...stateClone.response, id] 
+
+    return setStateQuestions(stateClone);
     }
 
-    const firstOptions = stateQuestions.response.slice(0, stateQuestions.index_question);
-    const lastOptions = stateQuestions.response.slice(stateQuestions.index_question + 1);
     if( stateQuestions.response.length > 1) {
-      setStateQuestions(prev => ({
-        index_question: prev.index_question + 1,
-        response: firstOptions.concat([id].concat(lastOptions)) 
-      }))
+      const firstOptions = stateQuestions.response.slice(0, stateQuestions.index_question);
+      const lastOptions = stateQuestions.response.slice(stateQuestions.index_question + 1);
+
+      stateClone.index_question = stateClone.index_question + 1,
+      stateClone.response = firstOptions.concat([id].concat(lastOptions)) 
+
+      return setStateQuestions(stateClone);
     }
 
   } 
 
+  useEffect(() => {
+    
+    if( goBack && !changeRender ) {
+      console.log( 'go back: ' + goBack);
+      console.log( 'tender: ' + changeRender);
+
+      setTimeout(() => {
+        setStateQuestions(prev => ({
+          ...prev,
+          index_question: prev.index_question - 1,
+        }))
+        console.log(changeRender);
+        setChangeRender(true)
+  
+      }, 500)
+    }
+  },[changeRender, goBack] )
+
   const handlePreviousQuestion = () => {
-    setStateQuestions(prev => ({
-      ...prev,
-      index_question: prev.index_question - 1,
-    }))
+    setGoBack(true);
+    setChangeRender(false)
+    
   }
 
   return (
@@ -114,6 +137,8 @@ function Home() {
                     handleSelectedOption={handleSelectedOption}
                     response={stateQuestions.response[stateQuestions.index_question]}
                     index={stateQuestions.index_question}
+                    goBack={goBack}
+                    changeRender={changeRender}
                   />
               )
             }
