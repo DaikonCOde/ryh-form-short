@@ -148,7 +148,7 @@ function ContactForm({answer}) {
       }
     }
 
-    emailjs.send('service_wnb16hq', 'template_phzvao8', formData , '09gAo-I0u4YaEPfe3')
+    emailjs.send('recoveryourhair_147490', 'template_zvcer2f', formData , 'r8a2yZnD5hgKfn1da')
       .then(response => {
         setIsLoading(false);
         navigate('/gracias')
