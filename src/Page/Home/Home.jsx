@@ -195,9 +195,9 @@ function Home() {
             }
 
           </div>
-          <div className="footer-form">
+          {/* <div className="footer-form">
             <span className='paragraph'>Hasta 3 ofertas de clínicas verificadas</span>
-          </div>
+          </div> */}
         </div>
     </div>
   )
