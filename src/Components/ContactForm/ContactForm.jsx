@@ -143,15 +143,16 @@ function ContactForm({answer}) {
 
     const formData = {
       ...stateForm,
+      reply_email: import.meta.env.VITE_EMAIL_USER ,
       answers: {
         ...answer
       }
     }
 
-    emailjs.send('recoveryourhair_147490', 'template_zvcer2f', formData , 'r8a2yZnD5hgKfn1da')
+    emailjs.send('service_wnb16hq', 'template_phzvao8', formData , '09gAo-I0u4YaEPfe3')
       .then(response => {
         setIsLoading(false);
-        navigate('/gracias')
+        navigate('/gracias', {replace: true})
       })
       .catch(error => console.log(error))
     
