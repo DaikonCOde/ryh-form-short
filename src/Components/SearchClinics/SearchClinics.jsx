@@ -8,7 +8,7 @@ function SearchClinics() {
       <img className='searching-animate' src={SearchClinicAnimate} alt="" />
 
       <span className='label-search'>
-        Nuestro sistema selecciona ahora las ofertas adecuadas para usted entre más de 131 médicos y 13 técnicas diferentes.
+        Nuestro sistema selecciona ahora las ofertas adecuadas para usted entre más de 321 médicos y 13 técnicas diferentes.
       </span>
     </>
   )
