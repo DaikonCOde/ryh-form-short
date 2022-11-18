@@ -26,116 +26,6 @@
       ]
     },
     {
-      "label": "¿Se ha sometido alguna vez a un trasplante de pelo?",
-      "options": [
-        {
-          "id": 11,
-          "src_img": "Yes.svg",
-          "label": "Si" 
-        },
-        {
-          "id": 12,
-          "src_img": "No.svg",
-          "label": "No"
-        }
-      ]
-    },
-    {
-      "label": "¿Otras personas de su familia sufren de pérdida de cabello?",
-      "options": [
-        {
-          "id": 21,
-          "src_img": "Yes.svg",
-          "label": "Si" 
-        },
-        {
-          "id": 22,
-          "src_img": "No.svg",
-          "label": "No"
-        }
-      ]
-    },
-    {
-      "label": "¿Hace cuántos años  que comenzó su pérdida de cabello?",
-      "options": [
-        {
-          "id": 31,
-          "src_img": "Less_than_5.svg",
-          "label": "Menos de 5" 
-        },
-        {
-          "id": 32,
-          "src_img": "5-10.svg",
-          "label": "5-10"
-        },
-        {
-          "id": 33,
-          "src_img": "More_than_10.svg",
-          "label": "Más de 10" 
-        }
-      ]
-    },
-    {
-      "label": "¿Cual es tu edad?",
-      "options": [
-        {
-          "id": 41,
-          "src_img": "Younger_than_24.svg",
-          "label": "Menor de 24" 
-        },
-        {
-          "id": 42,
-          "src_img": "24-30.svg",
-          "label": "24-30"
-        },
-        {
-          "id": 43,
-          "src_img": "30-45.svg",
-          "label": "30-45" 
-        },
-        {
-          "id": 44,
-          "src_img": "Older_than_45.svg",
-          "label": "Mayor de 45" 
-        }
-      ]
-    },
-    {
-      "label": "¿Está tratando actualmente su pérdida de cabello con finasteride o minoxidil?",
-      "options": [
-        {
-          "id": 51,
-          "src_img": "Yes.svg",
-          "label": "Si" 
-        },
-        {
-          "id": 52,
-          "src_img": "No.svg",
-          "label": "No"
-        }
-      ]
-    },
-    {
-      "label": "¿Cuándo quiere su trasplante capilar?",
-      "options": [
-        {
-          "id": 61,
-          "src_img": "As_soon_as_possible.svg",
-          "label": "Lo más pronto posible" 
-        },
-        {
-          "id": 62,
-          "src_img": "In_the_next_six_month.svg",
-          "label": "En los siguiente 6 meses"
-        },
-        {
-          "id": 63,
-          "src_img": "I_just_want_to_inform_myself.svg",
-          "label": "Sólo quiero informarme"
-        }
-      ]
-    },
-    {
       "label": "¿Cuál es el criterio más importante para usted a la hora de elegir un médico?",
       "options": [
         {
@@ -156,31 +46,11 @@
       ]
     },
     {
-      "label": "¿Cuán largo puede ser el viaje al médico?",
-      "options": [
-        {
-          "id": 81,
-          "src_img": "Up_to_20_km.svg",
-          "label": "Hasta 20Km" 
-        },
-        {
-          "id": 82,
-          "src_img": "Up_to_100_km.svg",
-          "label": "Hasta 100Km"
-        },
-        {
-          "id": 83,
-          "src_img": "I_do_not_care.svg",
-          "label": "No es de importancia"
-        }
-      ]
-    },
-    {
       "label": "¿Estarías dispuesto a ir al extranjero?",
       "options": [
         {
           "id": 91,
-          "src_img": "Yes.svg",
+          "src_img": "Flag_Europe.svg",
           "label": "Si" 
         },
         {
@@ -196,27 +66,22 @@
       ]
     },
     {
-      "label": "¿En qué zona vives?",
+      "label": "¿Cuándo quiere su trasplante capilar?",
       "options": [
         {
-          "id": 101,
-          "src_img": "Spain.svg",
-          "label": "España" 
+          "id": 61,
+          "src_img": "As_soon_as_possible.svg",
+          "label": "Lo más pronto posible" 
         },
         {
-          "id": 102,
-          "src_img": "Flag_USA.svg",
-          "label": "America"
+          "id": 62,
+          "src_img": "In_the_next_six_month.svg",
+          "label": "En los siguiente 6 meses"
         },
         {
-          "id": 103,
-          "src_img": "Flag_Europe.svg",
-          "label": "Europa"
-        },
-        {
-          "id": 104,
-          "src_img": "Flag_Other.svg",
-          "label": "Otro"
+          "id": 63,
+          "src_img": "I_just_want_to_inform_myself.svg",
+          "label": "Sólo quiero informarme"
         }
       ]
     },

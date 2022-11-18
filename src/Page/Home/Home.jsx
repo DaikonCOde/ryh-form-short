@@ -29,6 +29,7 @@ function Home() {
   const [ isLoading, setIsLoading ] = useState(false)
   const [ showContactForm, setShowContactForm ] = useState(false);
 
+  // manejar los estados de loading
   useEffect(() => {
     if( isSearching ) {
       setTimeout(() => {
@@ -46,6 +47,7 @@ function Home() {
     }
   }, [isSearching, isLoading])
 
+  // manejo al regresar a la  pregunta anterior
   useEffect(() => {
     
     if( goBack && !changeRender ) {
@@ -59,17 +61,20 @@ function Home() {
     }
   },[changeRender, goBack] )
 
+
+  // funcion al seleccionar la respuesta
   const handleSelectedOption = (id) => {
     const stateClone = Object.assign({}, stateQuestions);
+    // anterior pregunta
     if( goBack && changeRender ) {
       setChangeRender(false);
       setGoBack(false);
     } 
-
+    // cuando ya no quedan preguntas
     if( stateQuestions.index_question === (data.questions.length - 1) ) {
       setIsSearching(true)
     }
-
+    // primera pregunta
     if( stateQuestions.answers[stateQuestions.index_question] === undefined || stateQuestions.answers.length === 1 ) {
       stateClone.index_question = stateClone.index_question + 1,
       stateClone.answers = [...stateClone.answers, id] 
@@ -77,6 +82,7 @@ function Home() {
     return setStateQuestions(stateClone);
     }
 
+    // siguientes preguntas 
     if( stateQuestions.answers.length > 1) {
       const firstOptions = stateQuestions.answers.slice(0, stateQuestions.index_question);
       const lastOptions = stateQuestions.answers.slice(stateQuestions.index_question + 1);
@@ -130,6 +136,7 @@ function Home() {
   return (
     <div className='home-page'>
         <div className="content-form">
+            {/* barra de prograso */}
             {
               stateQuestions.index_question <= (data.questions.length - 1) && (
                 <div className="header-form">
@@ -138,6 +145,8 @@ function Home() {
               )
             }
           <div className="body-form" style={{  background: showContactForm ? '#fff' : '' }}>
+            
+            {/* preguntas */}
             <div className="content-question-label">
               {
                 stateQuestions.index_question <= (data.questions.length - 1) && (
@@ -157,7 +166,7 @@ function Home() {
               }
 
             </div>  
-
+              {/* lista de opciones */}
             {
               stateQuestions.index_question <= (data.questions.length - 1)  && (
                 <OptionsSelect 
@@ -170,6 +179,8 @@ function Home() {
                   />
               )
             }
+
+            {/* loading */}
             {
               (!showContactForm && (stateQuestions.index_question > (data.questions.length - 1) )) && (
                 <div className='content-search'>
@@ -187,7 +198,7 @@ function Home() {
 
               )
             }
-
+            {/* contact form */}
             {
               showContactForm && (
                 <ContactForm answer={answerParse} />

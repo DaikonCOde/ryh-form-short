@@ -91,7 +91,7 @@ function ContactForm({answer}) {
       errors.phone.error = true
       errors.phone.message = messageRequired
       error = true
-    } else if ( !/^\d+\.?\d*$/.test(stateForm.phone) ) {
+    } else if ( !/^[+]{0,1}\d+\.?\d*$/.test(stateForm.phone) ) {
       errors.phone.error = true
       errors.phone.message = messagePhone
       error = true
@@ -219,15 +219,6 @@ function ContactForm({answer}) {
           </div>
           <div className='content-input'>
             <InputText 
-              name='address'
-              value={stateForm.address}
-              handleChange={handleChange}
-              validate={validateError}
-              placeholder='¿Dónde vives?'
-            />
-          </div>
-          <div className='content-input'>
-            <InputText 
               name='phone'
               value={stateForm.phone}
               handleChange={handleChange}
@@ -235,6 +226,16 @@ function ContactForm({answer}) {
               placeholder='Número telefónico'
             />
           </div>
+          <div className='content-input'>
+            <InputText 
+              name='address'
+              value={stateForm.address}
+              handleChange={handleChange}
+              validate={validateError}
+              placeholder='En que provincia vives?'
+            />
+          </div>
+          
 
           <div className='accept-terms'>
             <input type="checkbox" name="terms" id="terms" onChange={() => setStateForm(prev => ({...prev, acceptTerms: !prev.acceptTerms }))}/>
