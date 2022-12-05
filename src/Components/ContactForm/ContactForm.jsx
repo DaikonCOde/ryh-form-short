@@ -3,6 +3,9 @@ import emailjs from '@emailjs/browser'
 import InputText from '../InputText/InputText'
 import SpinnerLoader from '../SpinnerLoader/SpinnerLoader'
 import { useNavigate } from 'react-router-dom'
+import { doc, collection, setDoc } from 'firebase/firestore';
+// firebase
+import { firestore } from '../../db/firebase';
 
 import './ContactForm.style.scss'
 
@@ -133,7 +136,7 @@ function ContactForm({answer}) {
     }))
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const existErrors = validarCampos(); 
@@ -141,7 +144,7 @@ function ContactForm({answer}) {
     if (existErrors) return;
     setIsLoading(true)
 
-    const formData = {
+    const dataEmail = {
       ...stateForm,
       reply_email: import.meta.env.VITE_EMAIL_USER ,
       answers: {
@@ -149,12 +152,36 @@ function ContactForm({answer}) {
       }
     }
 
-    emailjs.send('recoveryourhair_147490', 'template_zvcer2f', formData , 'r8a2yZnD5hgKfn1da')
-      .then(response => {
-        setIsLoading(false);
-        navigate('/gracias', {replace: true})
-      })
-      .catch(error => console.log(error))
+    try {
+      // obtener las respuestas guardadas en local storage
+      // const parseAnswerUser = await JSON.parse(localStorage.getItem('answer_user'));
+
+      // parsear data que se va a guardar
+      const formData = {
+          ...stateForm,
+          reply_email: 'daikon.code@gmail.com',
+          answers: {
+              ...answer
+          },
+          images: []
+      };
+      // crear referencia a la coleccion donde se debe de guardar
+      const newUser = doc(collection(firestore, 'users'));
+      // localStorage.setItem('key_user', stateForm.email);
+      // setear data
+      await setDoc(newUser, formData);
+  
+      // send email
+      emailjs.send('recoveryourhair_147490', 'template_zvcer2f', dataEmail , 'r8a2yZnD5hgKfn1da')
+        .then(response => {
+          setIsLoading(false);
+          navigate('/gracias', {replace: true})
+        })
+        .catch(error => console.log(error))
+      
+    } catch (error) {
+      setIsLoading(false);
+    }
     
   }
 
